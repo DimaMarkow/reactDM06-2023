@@ -24,6 +24,20 @@ class Contacts extends Component {
     ...INITIAL_STATE,
   };
 
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts.length !== prevState.contacts.length) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   createContact = data => {
     console.log(data);
 
@@ -39,16 +53,7 @@ class Contacts extends Component {
     );
     const alertString = newContact.name + ' is already in contacts.';
     if (repeatedContact) {
-      toast.error(alertString, {
-        position: 'top-left',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      toast.error(alertString);
       // alert(alertString);
       return;
     }
@@ -84,7 +89,6 @@ class Contacts extends Component {
         </Section>
         <Section title="Contacts">
           <>
-            {' '}
             <Filter
               filterText={this.state.filter}
               onFilterChange={this.onFilterChange}
