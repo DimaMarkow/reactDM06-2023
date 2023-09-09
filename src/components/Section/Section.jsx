@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class Section extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container border-bottom">
         <div className={css.wrapper}>
           <h5>{this.props.title}</h5>
           {this.props.children}
