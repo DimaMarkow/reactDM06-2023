@@ -1,34 +1,32 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class Filter extends Component {
-  onChange = e => {
-    this.props.onFilterChange(e.target.value);
-  };
+import React from 'react';
 
-  render() {
-    return (
-      <>
-        <form>
-          <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
-              Find contacts by name
-            </label>
-            <input
-              type="text"
-              name="filter"
-              value={this.props.filter}
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              onChange={this.onChange}
-            />
-          </div>
-        </form>
-      </>
-    );
-  }
-}
+const Filter = ({ filterText, onFilterChange }) => {
+  const onChange = e => {
+    onFilterChange(e.target.value);
+  };
+  return (
+    <>
+      <form>
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Find contacts by name
+          </label>
+          <input
+            type="text"
+            name="filter"
+            value={filterText}
+            className="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            onChange={onChange}
+          />
+        </div>
+      </form>
+    </>
+  );
+};
 
 export default Filter;
 

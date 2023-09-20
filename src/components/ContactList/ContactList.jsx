@@ -1,35 +1,31 @@
-import { Component } from 'react';
-
 import PropTypes from 'prop-types';
 
-class ContactList extends Component {
-  render() {
-    const contacts = this.props.contacts;
+import React from 'react';
 
-    return (
-      <>
-        <ul className="list-group-item">
-          {contacts.map(({ id, name, number }) => (
-            <li key={id} className="list-group-item">
-              <div className="offcanvas-header">
-                <h5 className="offcanvas-title" id="offcanvasLabel">
-                  {name} {number}
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="offcanvas"
-                  aria-label="Close"
-                  onClick={() => this.props.onDelete(id)}
-                ></button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </>
-    );
-  }
-}
+const ContactList = ({ contacts, onDelete }) => {
+  return (
+    <>
+      <ul className="list-group-item">
+        {contacts.map(({ id, name, number }) => (
+          <li key={id} className="list-group-item">
+            <div className="offcanvas-header">
+              <h5 className="offcanvas-title" id="offcanvasLabel">
+                {name} {number}
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+                onClick={() => onDelete(id)}
+              ></button>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};
 
 export default ContactList;
 
