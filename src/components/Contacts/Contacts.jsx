@@ -19,17 +19,19 @@ const INITIAL_STATE = [
 const Contacts = () => {
   const [contacts, setContacts] = useState(() => {
     const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+    console.log('сработал setContacts');
+
     return parsedContacts ? parsedContacts : INITIAL_STATE;
   });
   const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    const savedContacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(savedContacts);
-    console.log(parsedContacts);
-    if (parsedContacts) setContacts(parsedContacts);
-    console.log('сработал дидмаунт');
-  }, []);
+  // useEffect(() => {
+  // const savedContacts = localStorage.getItem('contacts');
+  // const parsedContacts = JSON.parse(savedContacts);
+  // console.log(parsedContacts);
+  // if (parsedContacts) setContacts(parsedContacts);
+  //   console.log('сработал дидмаунт');
+  // }, []);
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
